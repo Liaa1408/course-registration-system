@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#635bdb">
+    <title>Registration Successful | Course Registration Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="/" aria-label="Course Registration Portal home">
+                <span class="brand-mark" aria-hidden="true">✦</span>
+                <span>Course Registration Portal</span>
+            </a>
+            <span class="header-note">Your next great idea starts here</span>
+        </div>
+    </header>
+
+    <main class="success-shell">
+        <section class="success-card">
+            <div class="success-check" aria-hidden="true">✓</div>
+            <span class="eyebrow">YOU’RE ALL SET</span>
+            <h1>Registration successful!</h1>
+            <p class="success-welcome">Wonderful choice, {{ name }}! Your learning adventure is about to begin.</p>
+            <div class="registered-course">
+                <span class="registered-course-icon" aria-hidden="true">
+                    {% if course == "Python Programming" %}🐍{% elif course == "Java Programming" %}☕{% else %}🌐{% endif %}
+                </span>
+                <span>
+                    <span class="registered-label">YOU’RE REGISTERED FOR</span>
+                    <strong>{{ course }}</strong>
+                </span>
+            </div>
+            <a class="button button-primary" href="{{ url_for('home') }}">Register Another Course <span aria-hidden="true">→</span></a>
+        </section>
+    </main>
+
+    <footer class="site-footer">Student Course Registration Portal <span aria-hidden="true">·</span> College Mini Project</footer>
+</body>
+</html>

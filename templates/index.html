@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#635bdb">
+    <title>Course Registration Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="/" aria-label="Course Registration Portal home">
+                <span class="brand-mark" aria-hidden="true">✦</span>
+                <span>Course Registration Portal</span>
+            </a>
+            <span class="header-note">Your next great idea starts here</span>
+        </div>
+    </header>
+
+    <main class="page-shell">
+        <section class="welcome-panel">
+            <div class="welcome-copy">
+                <span class="eyebrow">LEARN · CREATE · GROW</span>
+                <h1>Explore Your Interests.<br>Learn Something New!</h1>
+                <p>Find a course that sparks your curiosity. Choose your next learning adventure and register in just a few steps.</p>
+            </div>
+            <div class="welcome-art" aria-hidden="true">
+                <span class="art-sparkle sparkle-one">✦</span>
+                <span class="art-book">📚</span>
+                <span class="art-sparkle sparkle-two">✧</span>
+            </div>
+        </section>
+
+        <form action="{{ url_for('register') }}" method="POST" class="registration-form">
+            <section class="courses-section" aria-labelledby="courses-title">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">PICK YOUR PATH</span>
+                        <h2 id="courses-title">Available Courses</h2>
+                    </div>
+                    <p>Choose the course you’re excited to explore.</p>
+                </div>
+
+                {% if error %}
+                    <div class="error-message" role="alert">
+                        <span aria-hidden="true">💡</span> {{ error }}
+                    </div>
+                {% endif %}
+
+                <div class="course-grid">
+                    {% set course_details = [
+                        ("Python Programming", "🐍", "Build a strong coding foundation and bring your ideas to life.", "python"),
+                        ("Java Programming", "☕", "Learn object-oriented programming and create versatile applications.", "java"),
+                        ("Web Development", "🌐", "Create beautiful, interactive websites for the world to explore.", "web")
+                    ] %}
+                    {% for course, icon, description, color in course_details %}
+                        <label class="course-card course-{{ color }}{% if selected_course == course %} is-selected{% endif %}">
+                            <input class="course-radio" type="radio" name="course" value="{{ course }}"
+                                   {% if selected_course == course %}checked{% endif %} required>
+                            <span class="course-icon" aria-hidden="true">{{ icon }}</span>
+                            <span class="course-title">{{ course }}</span>
+                            <span class="course-description">{{ description }}</span>
+                            <span class="course-choice">Select this course <span aria-hidden="true">→</span></span>
+                        </label>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="form-panel" aria-labelledby="register-title">
+                <div class="form-intro">
+                    <span class="form-icon" aria-hidden="true">✍️</span>
+                    <div>
+                        <h2 id="register-title">Make it official!</h2>
+                        <p>Tell us a little about yourself to reserve your spot.</p>
+                    </div>
+                </div>
+
+                <div class="form-fields">
+                    <div class="field">
+                        <label for="name">Student Name</label>
+                        <input id="name" name="name" type="text" placeholder="e.g. Alex Morgan"
+                               value="{{ name|default('', true) }}" autocomplete="name" required>
+                    </div>
+                    <div class="field">
+                        <label for="email">Email Address</label>
+                        <input id="email" name="email" type="email" placeholder="you@example.com"
+                               value="{{ email|default('', true) }}" autocomplete="email" required>
+                    </div>
+                </div>
+                <button class="button button-primary" type="submit">Register Now <span aria-hidden="true">✨</span></button>
+                <p class="form-note">Your learning journey is one click away.</p>
+            </section>
+        </form>
+    </main>
+
+    <footer class="site-footer">Student Course Registration Portal <span aria-hidden="true">·</span> College Mini Project</footer>
+</body>
+</html>
