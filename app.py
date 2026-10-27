@@ -16,6 +16,8 @@ def register():
 
     courses = ["Python Programming", "Java Programming", "Web Development", "Data Science"]
 
+# Course Registration System - Jenkins CI Test
+
     if not name or not email or course not in courses:
         return render_template(
             "index.html",
