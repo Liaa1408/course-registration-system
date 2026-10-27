@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    courses = ["Python Programming", "Java Programming", "Web Development"]
+    courses = ["Python Programming", "Java Programming", "Web Development", "Data Science"]
     return render_template("index.html", courses=courses)
 
 @app.route("/register", methods=["POST"])
@@ -14,7 +14,7 @@ def register():
     email = request.form.get("email", "").strip()
     course = request.form.get("course", "").strip()
 
-    courses = ["Python Programming", "Java Programming", "Web Development"]
+    courses = ["Python Programming", "Java Programming", "Web Development", "Data Science"]
 
     if not name or not email or course not in courses:
         return render_template(
