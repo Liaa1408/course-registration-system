@@ -53,7 +53,8 @@
                     {% set course_details = [
                         ("Python Programming", "🐍", "Build a strong coding foundation and bring your ideas to life.", "python"),
                         ("Java Programming", "☕", "Learn object-oriented programming and create versatile applications.", "java"),
-                        ("Web Development", "🌐", "Create beautiful, interactive websites for the world to explore.", "web")
+                        ("Web Development", "🌐", "Create beautiful, interactive websites for the world to explore.", "web"),
+                        ("Data Science", "📊", "Discover data, uncover patterns, and learn the basics of data analysis.", "data")
                     ] %}
                     {% for course, icon, description, color in course_details %}
                         <label class="course-card course-{{ color }}{% if selected_course == course %} is-selected{% endif %}">
